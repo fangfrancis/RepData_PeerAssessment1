@@ -76,8 +76,8 @@ sum(is.na(data$steps))
 I use the mean for each day to fill in all the missing values in the dataset.
 
 ```r
-data2 <- merge(data, steps_date, by="date")
-nas <- data2$steps.x == 0
+data2 <- merge(data, steps_date, all = TRUE, by="date")
+nas <- is.na(data2$steps.x)
 data2$steps.x[nas] <- data2$steps.y[nas]
 data2 <- data2[ ,1:3]
 colnames(data2)[2] <- "steps"
@@ -98,7 +98,7 @@ mean(steps_date$steps)
 ```
 
 ```
-## [1] 2177239
+## [1] 10766
 ```
 
 ```r
@@ -106,13 +106,13 @@ median(steps_date$steps)
 ```
 
 ```
-## [1] 2254724
+## [1] 10765
 ```
 Do these values differ from the estimates from the first part of the assignment? 
-**YES, they do.**
+**NO, they don't.**
 
 What is the impact of imputing missing data on the estimates of the total daily number of steps? 
-**They get much much bigger.**
+**They are the same as the estimates from the first part of the assignment.**
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
